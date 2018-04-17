@@ -1,4 +1,6 @@
-# Mobile-deep-learning（MDL）
+MDL renamed the paddle-mobile and move to PaddlePaddle org. We will release a lite version of the paddle fluid for mobile device. 
+
+# Mobile-deep-learning（MDL） 
 
 ![License](https://img.shields.io/github/license/simpeg/simpeg.svg) ![Travis](https://img.shields.io/travis/rust-lang/rust.svg)
 
