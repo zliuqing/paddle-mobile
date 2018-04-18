@@ -107,6 +107,7 @@ namespace mdl {
             count = cpp_result.size();
             result = env->NewFloatArray(count);
             env->SetFloatArrayRegion(result, 0, count, &cpp_result[0]);
+            env->ReleaseFloatArrayElements(buf, dataPointer, 0);
         EXCEPTION_FOOTER
 
         return result;
