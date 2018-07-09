@@ -231,7 +231,6 @@ open class MPSKernel: CustomKernel {
     public let neuron: MPSCNNNeuron?
     
     public var offset = MPSOffset(x: 0, y: 0, z: 0)
-    public var clipRect = MPSRectNoClip
     public var destinationFeatureChannelOffset = 0
     public var edgeMode = MPSImageEdgeMode.zero
     

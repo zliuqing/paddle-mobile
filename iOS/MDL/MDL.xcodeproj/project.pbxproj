@@ -7,10 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		144A770A20BE9971002DAA17 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A87F1F66751D00906055 /* Commons.swift */; };
+		144A770B20BE9971002DAA17 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8801F66751D00906055 /* Extensions.swift */; };
+		144A770C20BE9971002DAA17 /* ActivationLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8841F66751D00906055 /* ActivationLayer.swift */; };
+		144A770D20BE9971002DAA17 /* ConcatLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8851F66751D00906055 /* ConcatLayer.swift */; };
+		144A770E20BE9971002DAA17 /* ConvolutionLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8861F66751D00906055 /* ConvolutionLayer.swift */; };
+		144A770F20BE9971002DAA17 /* PreProcessLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8871F66751D00906055 /* PreProcessLayer.swift */; };
+		144A771020BE9971002DAA17 /* FcLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8891F66751D00906055 /* FcLayer.swift */; };
+		144A771120BE9971002DAA17 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A88A1F66751D00906055 /* Layer.swift */; };
+		144A771220BE9971002DAA17 /* PoolingLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A88D1F66751D00906055 /* PoolingLayer.swift */; };
+		144A771320BE9971002DAA17 /* ResizeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A88F1F66751D00906055 /* ResizeLayer.swift */; };
+		144A771420BE9971002DAA17 /* SoftmaxLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8901F66751D00906055 /* SoftmaxLayer.swift */; };
+		144A771520BE9971002DAA17 /* SplitLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8911F66751D00906055 /* SplitLayer.swift */; };
+		144A771620BE9971002DAA17 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8921F66751D00906055 /* Loader.swift */; };
+		144A771720BE9971002DAA17 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8931F66751D00906055 /* Matrix.swift */; };
+		144A771820BE9971002DAA17 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8951F66751D00906055 /* Model.swift */; };
+		144A771920BE9971002DAA17 /* Net.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8961F66751D00906055 /* Net.swift */; };
+		144A771A20BE9971002DAA17 /* MetalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC52BCC1F7ABA64002B31B6 /* MetalManager.swift */; };
+		144A771B20BE9971002DAA17 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6528A21F7FCD9C0073C775 /* Math.swift */; };
+		144A771C20BE9971002DAA17 /* MDLNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8981F66751D00906055 /* MDLNet.swift */; };
+		144A772220BE9A08002DAA17 /* MDLCPUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 144A772120BE9A08002DAA17 /* MDLCPUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		144A772420BE9D66002DAA17 /* libMDLCPUCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 144A771D20BE99AA002DAA17 /* libMDLCPUCore.a */; };
+		144A77D120C0F393002DAA17 /* DepthwiseConvolution.metal in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8881F66751D00906055 /* DepthwiseConvolution.metal */; };
+		14507AA620CA219F00396E89 /* MDL.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF7A8731F6674FB00906055 /* MDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		14507AA720CA21BC00396E89 /* MDL.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = FCF7A8731F6674FB00906055 /* MDL.h */; };
+		147AF02420C5375000BC70F3 /* MDL-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = 147AF02320C5375000BC70F3 /* MDL-Bridging-Header.h */; };
+		14E2C47C20AD545F00942421 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC92976A1F66768E001EBC95 /* libstdc++.tbd */; };
 		FC101A7F20568D8E00C6AC6F /* MDLCPUCore.h in Headers */ = {isa = PBXBuildFile; fileRef = FC101A7D20568D8E00C6AC6F /* MDLCPUCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC101A8020568D8E00C6AC6F /* libMDLCPUCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC101A7E20568D8E00C6AC6F /* libMDLCPUCore.a */; };
 		FC6528A31F7FCD9C0073C775 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6528A21F7FCD9C0073C775 /* Math.swift */; };
-		FC92976B1F66768E001EBC95 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC92976A1F66768E001EBC95 /* libstdc++.tbd */; };
 		FCC52BCD1F7ABA64002B31B6 /* MetalManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC52BCC1F7ABA64002B31B6 /* MetalManager.swift */; };
 		FCF7A8751F6674FB00906055 /* MDL.h in Headers */ = {isa = PBXBuildFile; fileRef = FCF7A8731F6674FB00906055 /* MDL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FCF7A8991F66751D00906055 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A87F1F66751D00906055 /* Commons.swift */; };
@@ -33,7 +58,25 @@
 		FCF7A8B11F66751D00906055 /* MDLNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF7A8981F66751D00906055 /* MDLNet.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		144A766E20BE7E13002DAA17 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+				14507AA720CA21BC00396E89 /* MDL.h in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		144A767020BE7E13002DAA17 /* libMDLLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMDLLib.a; path = libMDL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		144A771D20BE99AA002DAA17 /* libMDLCPUCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDLCPUCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		144A772120BE9A08002DAA17 /* MDLCPUCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDLCPUCore.h; sourceTree = "<group>"; };
+		147AF02320C5375000BC70F3 /* MDL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MDL-Bridging-Header.h"; sourceTree = "<group>"; };
+		1484A23B20AAFF86007B5B11 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "../../../../../../usr/lib/libstdc++.6.0.9.dylib"; sourceTree = "<group>"; };
 		FC101A7D20568D8E00C6AC6F /* MDLCPUCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDLCPUCore.h; sourceTree = "<group>"; };
 		FC101A7E20568D8E00C6AC6F /* libMDLCPUCore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMDLCPUCore.a; sourceTree = "<group>"; };
 		FC6528A21F7FCD9C0073C775 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
@@ -63,11 +106,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		144A766D20BE7E13002DAA17 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				144A772420BE9D66002DAA17 /* libMDLCPUCore.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCF7A86C1F6674FB00906055 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC92976B1F66768E001EBC95 /* libstdc++.tbd in Frameworks */,
+				14E2C47C20AD545F00942421 /* libstdc++.tbd in Frameworks */,
 				FC101A8020568D8E00C6AC6F /* libMDLCPUCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -75,6 +126,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		144A767120BE7E13002DAA17 /* MDLLib */ = {
+			isa = PBXGroup;
+			children = (
+				147AF02320C5375000BC70F3 /* MDL-Bridging-Header.h */,
+			);
+			path = MDLLib;
+			sourceTree = "<group>";
+		};
 		FC101A7B20568D8E00C6AC6F /* include */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,6 +153,8 @@
 		FC9297691F66768E001EBC95 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				144A771D20BE99AA002DAA17 /* libMDLCPUCore.a */,
+				1484A23B20AAFF86007B5B11 /* libstdc++.6.0.9.dylib */,
 				FC92976A1F66768E001EBC95 /* libstdc++.tbd */,
 			);
 			name = Frameworks;
@@ -111,7 +172,9 @@
 		FCF7A8661F6674FB00906055 = {
 			isa = PBXGroup;
 			children = (
+				144A772120BE9A08002DAA17 /* MDLCPUCore.h */,
 				FCF7A8721F6674FB00906055 /* MDL */,
+				144A767120BE7E13002DAA17 /* MDLLib */,
 				FCF7A8711F6674FB00906055 /* Products */,
 				FC9297691F66768E001EBC95 /* Frameworks */,
 			);
@@ -121,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				FCF7A8701F6674FB00906055 /* MDL.framework */,
+				144A767020BE7E13002DAA17 /* libMDLLib.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,6 +246,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		144A771F20BE99EB002DAA17 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				144A772220BE9A08002DAA17 /* MDLCPUCore.h in Headers */,
+				14507AA620CA219F00396E89 /* MDL.h in Headers */,
+				147AF02420C5375000BC70F3 /* MDL-Bridging-Header.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCF7A86D1F6674FB00906055 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -194,6 +268,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		144A766F20BE7E13002DAA17 /* MDLLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 144A767820BE7E13002DAA17 /* Build configuration list for PBXNativeTarget "MDLLib" */;
+			buildPhases = (
+				144A766C20BE7E13002DAA17 /* Sources */,
+				144A766D20BE7E13002DAA17 /* Frameworks */,
+				144A766E20BE7E13002DAA17 /* CopyFiles */,
+				144A771F20BE99EB002DAA17 /* Headers */,
+				144A77D420C0F860002DAA17 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MDLLib;
+			productName = MDLLib;
+			productReference = 144A767020BE7E13002DAA17 /* libMDLLib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		FCF7A86F1F6674FB00906055 /* MDL */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCF7A8781F6674FB00906055 /* Build configuration list for PBXNativeTarget "MDL" */;
@@ -221,11 +314,14 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = baidu;
 				TargetAttributes = {
+					144A766F20BE7E13002DAA17 = {
+						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
+					};
 					FCF7A86F1F6674FB00906055 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = Z5M2UUN5YV;
 						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -242,6 +338,7 @@
 			projectRoot = "";
 			targets = (
 				FCF7A86F1F6674FB00906055 /* MDL */,
+				144A766F20BE7E13002DAA17 /* MDLLib */,
 			);
 		};
 /* End PBXProject section */
@@ -256,7 +353,50 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		144A77D420C0F860002DAA17 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#.metal文件经过编译后会生成.metallib文件，该文件存储了metal库，以供运行时使用。由于此target是.a而无法包含.metallib，这里将.metallib拷贝到bundle文件中，需将该bundle文件与.a库一并交付\nBUNDLE_PATH=\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.bundle\"\nLIB_PATH=\"${TARGET_BUILD_DIR}/default.metallib\"\necho $BUNDLE_PATH\necho $LIB_PATH\nif [ ! -d $BUNDLE_PATH ]; then\nmkdir $BUNDLE_PATH\nfi\ncp -r $LIB_PATH $BUNDLE_PATH";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		144A766C20BE7E13002DAA17 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				144A77D120C0F393002DAA17 /* DepthwiseConvolution.metal in Sources */,
+				144A770A20BE9971002DAA17 /* Commons.swift in Sources */,
+				144A770B20BE9971002DAA17 /* Extensions.swift in Sources */,
+				144A770C20BE9971002DAA17 /* ActivationLayer.swift in Sources */,
+				144A770D20BE9971002DAA17 /* ConcatLayer.swift in Sources */,
+				144A770E20BE9971002DAA17 /* ConvolutionLayer.swift in Sources */,
+				144A770F20BE9971002DAA17 /* PreProcessLayer.swift in Sources */,
+				144A771020BE9971002DAA17 /* FcLayer.swift in Sources */,
+				144A771120BE9971002DAA17 /* Layer.swift in Sources */,
+				144A771220BE9971002DAA17 /* PoolingLayer.swift in Sources */,
+				144A771320BE9971002DAA17 /* ResizeLayer.swift in Sources */,
+				144A771420BE9971002DAA17 /* SoftmaxLayer.swift in Sources */,
+				144A771520BE9971002DAA17 /* SplitLayer.swift in Sources */,
+				144A771620BE9971002DAA17 /* Loader.swift in Sources */,
+				144A771720BE9971002DAA17 /* Matrix.swift in Sources */,
+				144A771820BE9971002DAA17 /* Model.swift in Sources */,
+				144A771920BE9971002DAA17 /* Net.swift in Sources */,
+				144A771A20BE9971002DAA17 /* MetalManager.swift in Sources */,
+				144A771B20BE9971002DAA17 /* Math.swift in Sources */,
+				144A771C20BE9971002DAA17 /* MDLNet.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FCF7A86B1F6674FB00906055 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +427,86 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		144A767620BE7E13002DAA17 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULE_DEBUGGING = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"STATIC_LIBRARY=1",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MDL/CPU/**";
+				MTL_LANGUAGE_REVISION = Metal12;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_MODULE_NAME = MDL;
+				PRODUCT_NAME = MDL;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG STATIC_LIBRARY";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/MDLLib/MDL-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Debug;
+		};
+		144A767720BE7E13002DAA17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULE_DEBUGGING = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = "STATIC_LIBRARY=1";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LIBRARY_SEARCH_PATHS = "$(PROJECT_DIR)/MDL/CPU/**";
+				MTL_LANGUAGE_REVISION = Metal12;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_SWIFT_FLAGS = "";
+				PRODUCT_MODULE_NAME = MDL;
+				PRODUCT_NAME = MDL;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = STATIC_LIBRARY;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/MDLLib/MDL-Bridging-Header.h";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7";
+			};
+			name = Release;
+		};
 		FCF7A8761F6674FB00906055 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -393,12 +613,18 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z5M2UUN5YV;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"STATIC_LIBRARY=0",
+				);
 				INFOPLIST_FILE = MDL/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -407,10 +633,13 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MDL/CPU",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MTL_LANGUAGE_REVISION = Metal12;
 				MTL_PREPROCESSOR_DEFINITIONS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeworm.MDL;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liuqing.MDL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -422,12 +651,14 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = Z5M2UUN5YV;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = "STATIC_LIBRARY=0";
 				INFOPLIST_FILE = MDL/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -436,10 +667,12 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MDL/CPU",
 				);
+				MACH_O_TYPE = mh_dylib;
 				MTL_LANGUAGE_REVISION = Metal12;
 				MTL_PREPROCESSOR_DEFINITIONS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeworm.MDL;
+				PRODUCT_BUNDLE_IDENTIFIER = com.liuqing.MDL;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -448,6 +681,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		144A767820BE7E13002DAA17 /* Build configuration list for PBXNativeTarget "MDLLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				144A767620BE7E13002DAA17 /* Debug */,
+				144A767720BE7E13002DAA17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FCF7A86A1F6674FB00906055 /* Build configuration list for PBXProject "MDL" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

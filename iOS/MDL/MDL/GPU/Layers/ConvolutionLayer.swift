@@ -24,6 +24,64 @@ import Foundation
 import MetalPerformanceShaders
 
 @available(iOS 10.0, *)
+class ConvolutionDataSource: NSObject, MPSCNNConvolutionDataSource {
+    var activation: MPSCNNNeuron?
+    var weightWidth = 1
+    var weightHeight = 1
+    var inputChannels = 1
+    var outputChannels = 1
+    var stride = 1
+    var weight: UnsafeMutableRawPointer
+    var bias: UnsafeMutablePointer<Float>?
+    
+    init(weightWidth: Int, weightHeight: Int, inputChannels: Int, outputChannels: Int, weight: UnsafeMutableRawPointer, bias: UnsafeMutablePointer<Float>?, stride: Int, activation: MPSCNNNeuron?) {
+        self.bias = bias
+        self.weight = weight
+        self.weightWidth = weightWidth
+        self.weightHeight = weightHeight
+        self.inputChannels = inputChannels
+        self.outputChannels = outputChannels
+        self.stride = stride
+        self.activation = activation
+        super.init()
+    }
+    
+    func dataType() -> MPSDataType {
+        return MPSDataType.float32
+    }
+    
+    func descriptor() -> MPSCNNConvolutionDescriptor {
+        let desc = MPSCNNConvolutionDescriptor.init(kernelWidth: weightWidth,
+                                                    kernelHeight: weightHeight,
+                                                    inputFeatureChannels: inputChannels,
+                                                    outputFeatureChannels: outputChannels,
+                                                    neuronFilter: activation)
+        desc.strideInPixelsX = stride
+        desc.strideInPixelsY = stride
+        return desc
+    }
+    
+    func weights() -> UnsafeMutableRawPointer {
+        return self.weight
+    }
+    
+    func biasTerms() -> UnsafeMutablePointer<Float>? {
+        return self.bias
+    }
+    
+    func load() -> Bool {
+        return true
+    }
+    
+    func purge() {
+    }
+    
+    public func label() -> String?{
+        return nil
+    }
+}
+
+@available(iOS 10.0, *)
 class ConvolutionLayer: MPSCNNLayer {
     let padding: Int
     var conv: MPSCNNConvolution?
@@ -58,14 +116,6 @@ class ConvolutionLayer: MPSCNNLayer {
         let weight = weights[0]
         let input = inputs[0]
         let output = outputs[0]
-        let desc = MPSCNNConvolutionDescriptor(kernelWidth: weight.width,
-                                               kernelHeight: weight.height,
-                                               inputFeatureChannels: input.channels,
-                                               outputFeatureChannels: output.channels,
-                                               neuronFilter: activation)
-        desc.strideInPixelsX = stride
-        desc.strideInPixelsY = stride
-        
         
         var bias: Matrix?
         if useBias {
@@ -75,11 +125,32 @@ class ConvolutionLayer: MPSCNNLayer {
             fatalError("weight data is nil")
         }
         
-        conv = MPSCNNConvolution(device: device,
-                                 convolutionDescriptor: desc,
-                                 kernelWeights: wData,
-                                 biasTerms: bias?.data?.pointer,
-                                 flags: .none)
+        let dataSource = ConvolutionDataSource.init(weightWidth: weight.width,
+                                                    weightHeight: weight.height,
+                                                    inputChannels: input.channels,
+                                                    outputChannels: output.channels,
+                                                    weight: wData,
+                                                    bias: bias?.data?.pointer,
+                                                    stride: stride, activation: activation)
+        
+        if #available(iOS 11.0, *) {
+            conv = MPSCNNConvolution.init(device: device, weights: dataSource)
+        } else {
+            //            let method: Method = class_getClassMethod(MPSCNNConvolution, Selector.init(""))
+            //
+            //            let implementation = method_getImplementation(method)
+            //
+            //            typealias Function = @convention(c) (AnyObject, Selector, MTLDevice, MPSCNNConvolutionDescriptor, UnsafePointer<Float>, UnsafePointer<Float>?, MPSCNNConvolutionFlags) -> Unmanaged<MPSCNNConvolution>
+            //
+            //
+            //            let function = unsafeBitCast(implementation, to: Function.self)
+            
+            /*
+             public init(device: MTLDevice, convolutionDescriptor: MPSCNNConvolutionDescriptor, kernelWeights: UnsafePointer<Float>, biasTerms: UnsafePointer<Float>?, flags: MPSCNNConvolutionFlags)
+             */
+            
+            
+        }
         conv?.edgeMode = .zero
         mpscnn = conv
     }
@@ -144,61 +215,59 @@ class DepthwiseConvolution: Layer {
             biasTerms = weights[1].data?.pointer
         }
         
-        if #available(iOS 11.0, *) {
-            let desc = MPSCNNDepthWiseConvolutionDescriptor.init(kernelWidth: kernel.0, kernelHeight: kernel.1,
-                                                                 inputFeatureChannels: input.channels,
-                                                                 outputFeatureChannels: input.channels,
-                                                                 neuronFilter: activation)
-            desc.strideInPixelsX = stride.0
-            desc.strideInPixelsY = stride.1
-            compute = MPSCNNConvolution.init(device: device,
-                                             convolutionDescriptor: desc,
+        //        if #available(iOS 11.0, *) {
+        //            let desc = MPSCNNDepthWiseConvolutionDescriptor.init(kernelWidth: kernel.0, kernelHeight: kernel.1,
+        //                                                                 inputFeatureChannels: input.channels,
+        //                                                                 outputFeatureChannels: input.channels,
+        //                                                                 neuronFilter: activation)
+        //            desc.strideInPixelsX = stride.0
+        //            desc.strideInPixelsY = stride.1
+        //
+        //            compute = MPSCNNConvolution.init(device: device,
+        //                                             convolutionDescriptor: desc,
+        //                                             kernelWeights: weightData,
+        //                                             biasTerms: biasTerms,
+        //                                             flags: .none)
+        //            (compute as! MPSCNNConvolution).edgeMode = .zero
+        //
+        //        }else{
+        compute = DepthwiseConvolutionKernel(device: device,
+                                             kernelWidth: kernel.0,
+                                             kernelHeight: kernel.1,
+                                             featureChannels: input.channels,
+                                             strideInPixelsX: stride.0,
+                                             strideInPixelsY: stride.1,
+                                             channelMultiplier: 1,
+                                             neuronFilter: activation,
                                              kernelWeights: weightData,
-                                             biasTerms: biasTerms,
-                                             flags: .none)
-            (compute as! MPSCNNConvolution).edgeMode = .zero
-
-        }else{
-            compute = DepthwiseConvolutionKernel(device: device,
-                                                 kernelWidth: kernel.0,
-                                                 kernelHeight: kernel.1,
-                                                 featureChannels: input.channels,
-                                                 strideInPixelsX: stride.0,
-                                                 strideInPixelsY: stride.1,
-                                                 channelMultiplier: 1,
-                                                 neuronFilter: activation,
-                                                 kernelWeights: weightData,
-                                                 biasTerms: biasTerms)
-        }
+                                             biasTerms: biasTerms)
     }
+    //    }
     
     override func encode(commandBuffer: MTLCommandBuffer) {
         let input = inputs[0]
         let output = outputs[0]
         let offset = MetalManager.offsetForConvolution(padding: self.pad,
-                                                           sourceWidth: input.width,
-                                                           sourceHeight: input.height,
-                                                           destinationWidth: output.width,
-                                                           destinationHeight: output.height,
-                                                           kernelWidth: kernel.0,
-                                                           kernelHeight: kernel.1,
-                                                           strideInPixelsX: stride.0,
-                                                           strideInPixelsY: stride.1)
+                                                       sourceWidth: input.width,
+                                                       sourceHeight: input.height,
+                                                       destinationWidth: output.width,
+                                                       destinationHeight: output.height,
+                                                       kernelWidth: kernel.0,
+                                                       kernelHeight: kernel.1,
+                                                       strideInPixelsX: stride.0,
+                                                       strideInPixelsY: stride.1)
         
         if let inCompute = compute as? DepthwiseConvolutionKernel {
             inCompute.offset = offset
             inCompute.encode(commandBuffer: commandBuffer,
-                           sourceImage: input.image!,
-                           destinationImage: output.image!)
+                             sourceImage: input.image!,
+                             destinationImage: output.image!)
         } else if let inCompute = compute as? MPSCNNConvolution {
             inCompute.offset = offset
             inCompute.encode(commandBuffer: commandBuffer,
                              sourceImage: input.image!,
                              destinationImage: output.image!)
         }
-        
-        
-     
     }
 }
 

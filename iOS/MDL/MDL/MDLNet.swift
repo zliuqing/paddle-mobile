@@ -66,6 +66,10 @@ public protocol MDLNet {
      */
     static var share: T{get}
     /**
+     the single instance of the net, only one net can exit of a type
+     */
+    static var share1: T{get}
+    /**
      will be true when loaded success
      */
     var loaded: Bool{get set}
@@ -84,7 +88,8 @@ final public class MDLCPUNet: MDLNet {
     public var loaded: Bool  = false
     public typealias T  = MDLCPUNet
     public static let share: T = MDLCPUNet()
-    
+    public static let share1: T = MDLCPUNet()
+
     private init(){
         setThreadNum(number: 1)
     }
@@ -140,6 +145,7 @@ final public class MDLGPUNet: MDLNet{
     public var loaded: Bool  = false
     public typealias T = MDLGPUNet
     public static let share: T = MDLGPUNet()
+    public static let share1: T = MDLGPUNet()
     private var model: Model?
     private var net: Net?
     

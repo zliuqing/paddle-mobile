@@ -59,8 +59,23 @@ final class MetalManager {
     let mainLibrary: MTLLibrary?
     private init(){
         device = MTLCreateSystemDefaultDevice()!
-        mdlLibrary = device.makeLibrary(bundle: Bundle(for: MetalManager.self)) ?! ""
+        
+        var libBundle: Bundle! = Bundle(for: MetalManager.self)
+#if STATIC_LIBRARY
+        libBundle = Bundle.main
+        if let mdlBundlePath = libBundle.path(forResource: "YourBundlePath.bundle/MDL", ofType: "bundle"), let mdlBundle = Bundle(path: mdlBundlePath) {
+            libBundle = mdlBundle
+
+        } else {
+            print("MDL.bundle not found in \(libBundle)")
+        }
+        mdlLibrary = device.makeLibrary(bundle: libBundle) ?! ""
+        mainLibrary = device.makeLibrary(bundle: libBundle)
+#else
+        mdlLibrary = device.makeLibrary(bundle: libBundle) ?! ""
         mainLibrary = device.makeLibrary(bundle: Bundle.main)
+#endif
+        
     }
     
     static func makeFunction(device: MTLDevice, name: String, bundle: Bundle = Bundle(for: MetalManager.self), constantValues: MTLFunctionConstantValues? = nil) -> MTLComputePipelineState {
