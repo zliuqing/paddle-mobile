@@ -89,7 +89,7 @@ license and copyright terms herein.
 #include "math/neon_mathfun.h"
 #endif
 
-#ifndef MDL_MAC
+#if (__aarch64__ || __arm__)
 #include <arm_neon.h>
 #endif
 

@@ -72,7 +72,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		144A767020BE7E13002DAA17 /* libMDLLib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMDLLib.a; path = libMDL.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		144A767020BE7E13002DAA17 /* libMDL.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMDL.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		144A771D20BE99AA002DAA17 /* libMDLCPUCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMDLCPUCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		144A772120BE9A08002DAA17 /* MDLCPUCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MDLCPUCore.h; sourceTree = "<group>"; };
 		147AF02320C5375000BC70F3 /* MDL-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MDL-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				FCF7A8701F6674FB00906055 /* MDL.framework */,
-				144A767020BE7E13002DAA17 /* libMDLLib.a */,
+				144A767020BE7E13002DAA17 /* libMDL.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -284,7 +284,7 @@
 			);
 			name = MDLLib;
 			productName = MDLLib;
-			productReference = 144A767020BE7E13002DAA17 /* libMDLLib.a */;
+			productReference = 144A767020BE7E13002DAA17 /* libMDL.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		FCF7A86F1F6674FB00906055 /* MDL */ = {
@@ -365,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#.metal文件经过编译后会生成.metallib文件，该文件存储了metal库，以供运行时使用。由于此target是.a而无法包含.metallib，这里将.metallib拷贝到bundle文件中，需将该bundle文件与.a库一并交付\nBUNDLE_PATH=\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.bundle\"\nLIB_PATH=\"${TARGET_BUILD_DIR}/default.metallib\"\necho $BUNDLE_PATH\necho $LIB_PATH\nif [ ! -d $BUNDLE_PATH ]; then\nmkdir $BUNDLE_PATH\nfi\ncp -r $LIB_PATH $BUNDLE_PATH";
+			shellScript = "#.metal文件经过编译后会生成.metallib文件，该文件存储了metal库，以供运行时使用。由于此target是.a而无法包含.metallib，这里将.metallib拷贝到bundle文件中，需将该bundle文件与.a库一并交付\nBUNDLE_PATH=\"${TARGET_BUILD_DIR}/${PRODUCT_NAME}.bundle\"\nLIB_PATH=\"${TARGET_BUILD_DIR}/default.metallib\"\necho $BUNDLE_PATH\necho $LIB_PATH\nif [ ! -d $BUNDLE_PATH ]; then\nmkdir $BUNDLE_PATH\nfi\n\nif [ -d $LIB_PATH ]; then\ncp -r $LIB_PATH $BUNDLE_PATH\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -430,6 +430,7 @@
 		144A767620BE7E13002DAA17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BITCODE_GENERATION_MODE = marker;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -465,13 +466,14 @@
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "arm64 armv7 x86_64";
 			};
 			name = Debug;
 		};
 		144A767720BE7E13002DAA17 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_ENABLE_MODULE_DEBUGGING = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -503,7 +505,7 @@
 				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALID_ARCHS = "arm64 armv7";
+				VALID_ARCHS = "arm64 armv7 x86_64";
 			};
 			name = Release;
 		};
@@ -511,6 +513,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BITCODE_GENERATION_MODE = marker;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -552,6 +555,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -565,6 +570,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -599,6 +605,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "-fembed-bitcode";
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -650,10 +658,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = JE8N4C4X7L;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
