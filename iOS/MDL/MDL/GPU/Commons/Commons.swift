@@ -272,16 +272,26 @@ public class DepthwiseConvolutionKernel: MPSKernel {
         let inputSlices = (featureChannels + 3) / 4
         let paddedInputChannels = inputSlices * 4
         let count = kernelHeight * kernelWidth * paddedInputChannels
-        weightsBuffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)
+        
+        guard let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count) else {
+            fatalError("mdl cannot make buffer!")
+//            return
+        }
+        weightsBuffer = buffer
         
         MetalManager.copy(weights: kernelWeights, to: weightsBuffer, channelFormat: .float16,
                           kernelWidth: kernelWidth, kernelHeight: kernelHeight,
                           inputFeatureChannels: featureChannels, outputFeatureChannels: 1)
         
-        biasBuffer = MetalManager.makeBuffer(device: device,
-                                             channelFormat: .float16,
-                                             outputFeatureChannels: featureChannels,
-                                             biasTerms: biasTerms)
+        guard let bBuffer = MetalManager.makeBuffer(device: device,
+                                                    channelFormat: .float16,
+                                                    outputFeatureChannels: featureChannels,
+                                                    biasTerms: biasTerms) else {
+            fatalError("mdl cannot make biasBuffer!")
+            return
+        }
+        
+        biasBuffer = bBuffer
         
         var params = KernelParams()
         let constants = MTLFunctionConstantValues()
@@ -309,14 +319,14 @@ public class DepthwiseConvolutionKernel: MPSKernel {
         params.inputOffsetZ = Int16(offset.z);
         
         let encoder = commandBuffer.makeComputeCommandEncoder()
-        encoder.setComputePipelineState(pipeline)
-        encoder.setTexture(sourceImage.texture, at: 0)
-        encoder.setTexture(destinationImage.texture, at: 1)
-        encoder.setBytes(&params, length: MemoryLayout<KernelParams>.size, at: 0)
-        encoder.setBuffer(weightsBuffer, offset: 0, at: 1)
-        encoder.setBuffer(biasBuffer, offset: 0, at: 2)
-        encoder.dispatch(pipeline: pipeline, image: destinationImage)
-        encoder.endEncoding()
+        encoder?.setComputePipelineState(pipeline)
+        encoder?.setTexture(sourceImage.texture, index: 0)
+        encoder?.setTexture(destinationImage.texture, index: 1)
+        encoder?.setBytes(&params, length: MemoryLayout<KernelParams>.size, index: 0)
+        encoder?.setBuffer(weightsBuffer, offset: 0, index: 1)
+        encoder?.setBuffer(biasBuffer, offset: 0, index: 2)
+        encoder?.dispatch(pipeline: pipeline, image: destinationImage)
+        encoder?.endEncoding()
         
         if let image = sourceImage as? MPSTemporaryImage {
             image.readCount -= 1
@@ -338,13 +348,13 @@ open class MetalKernel {
     
     public func encode(commandBuffer: MTLCommandBuffer, sourceImage: MPSImage, destinationImage: MPSImage) {
         let encoder = commandBuffer.makeComputeCommandEncoder()
-        encoder.pushDebugGroup(name)
-        encoder.setComputePipelineState(pipeline)
-        encoder.setTexture(sourceImage.texture, at: 0)
-        encoder.setTexture(destinationImage.texture, at: 1)
-        encoder.dispatch(pipeline: pipeline, image: destinationImage)
-        encoder.popDebugGroup()
-        encoder.endEncoding()
+        encoder?.pushDebugGroup(name)
+        encoder?.setComputePipelineState(pipeline)
+        encoder?.setTexture(sourceImage.texture, index: 0)
+        encoder?.setTexture(destinationImage.texture, index: 1)
+        encoder?.dispatch(pipeline: pipeline, image: destinationImage)
+        encoder?.popDebugGroup()
+        encoder?.endEncoding()
         
         if let image = sourceImage as? MPSTemporaryImage {
             image.readCount -= 1

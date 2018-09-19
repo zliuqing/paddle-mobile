@@ -143,7 +143,11 @@ class Net {
         let date = Date()
         inflightSemaphore.wait()
         autoreleasepool {
-            let commandBuffer = commandQueue.makeCommandBuffer()
+            guard let commandBuffer = commandQueue.makeCommandBuffer() else {
+                print("\n mdl cannot makecommandBuffer!")
+                inflightSemaphore.signal()
+                return
+            }
             let values = Array(descriptorList.values)
             MPSTemporaryImage.prefetchStorage(with: commandBuffer, imageDescriptorList: values)
             for layer in layers {

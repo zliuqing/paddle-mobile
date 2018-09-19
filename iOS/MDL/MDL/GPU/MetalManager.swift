@@ -109,7 +109,7 @@ final class MetalManager {
                            kernelHeight: Int,
                            inputFeatureChannels: Int,
                            outputFeatureChannels: Int,
-                           weights: UnsafePointer<Float>) -> MTLBuffer {
+                           weights: UnsafePointer<Float>) -> MTLBuffer? {
         
         assert(channelFormat == .float16)
         
@@ -120,18 +120,19 @@ final class MetalManager {
         let count = paddedOutputChannels * kernelHeight * kernelWidth * paddedInputChannels
         
         let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)
-        
-        copy(weights: weights, to: buffer, channelFormat: channelFormat,
-             kernelWidth: kernelWidth, kernelHeight: kernelHeight,
-             inputFeatureChannels: inputFeatureChannels,
-             outputFeatureChannels: outputFeatureChannels)
+        if let buffer = buffer {
+            copy(weights: weights, to: buffer, channelFormat: channelFormat,
+                 kernelWidth: kernelWidth, kernelHeight: kernelHeight,
+                 inputFeatureChannels: inputFeatureChannels,
+                 outputFeatureChannels: outputFeatureChannels)
+        }
         return buffer
     }
     
     static func makeBuffer(device: MTLDevice,
                            channelFormat: MPSImageFeatureChannelFormat,
                            outputFeatureChannels: Int,
-                           biasTerms: UnsafePointer<Float>?) -> MTLBuffer {
+                           biasTerms: UnsafePointer<Float>?) -> MTLBuffer? {
         
         assert(channelFormat == .float16)
         
@@ -140,7 +141,7 @@ final class MetalManager {
         let buffer = device.makeBuffer(length: MemoryLayout<Float16>.stride * count)
         
         
-        if let biasTerms = biasTerms {
+        if let biasTerms = biasTerms, let buffer = buffer {
             copy(biasTerms: biasTerms, to: buffer, channelFormat: channelFormat,
                  outputFeatureChannels: outputFeatureChannels)
         }
@@ -228,7 +229,7 @@ final class MetalManager {
                 let values = MTLFunctionConstantValues()
                 for constant in constants {
                     var val = constant.getValue()
-                    values.setConstantValue(&val, type: constant.type, at: constant.index)
+                    values.setConstantValue(&val, type: constant.type, index: constant.index)
                 }
                 function = try library.makeFunction(name: name, constantValues: values)
             } else {
