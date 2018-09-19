@@ -25,6 +25,11 @@ import MetalPerformanceShaders
 
 @available(iOS 10.0, *)
 class ConvolutionDataSource: NSObject, MPSCNNConvolutionDataSource {
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        return self
+    }
+    
     var activation: MPSCNNNeuron?
     var weightWidth = 1
     var weightHeight = 1
