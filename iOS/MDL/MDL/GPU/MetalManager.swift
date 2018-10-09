@@ -68,13 +68,15 @@ final class MetalManager {
             libBundle = mdlBundle
 
         } else {
-            print("MDL.bundle not found in \(libBundle)")
+            print("MDL.bundle not found in \(String(describing: libBundle))")
         }
-        mdlLibrary = device.makeLibrary(bundle: libBundle) ?! ""
-        mainLibrary = device.makeLibrary(bundle: libBundle)
+        mdlLibrary = try! device.makeDefaultLibrary(bundle: libBundle)
+        mainLibrary = try! device.makeDefaultLibrary(bundle: libBundle)
 #else
-        mdlLibrary = device.makeLibrary(bundle: libBundle) ?! ""
-        mainLibrary = device.makeLibrary(bundle: Bundle.main)
+        mdlLibrary = try! device.makeDefaultLibrary(bundle: libBundle)
+        mainLibrary = try! device.makeDefaultLibrary(bundle: Bundle.main)
+//        mdlLibrary = device.makeLibrary(bundle: libBundle) ?! ""
+//        mainLibrary = device.makeLibrary(bundle: Bundle.main)
 #endif
         
     }
