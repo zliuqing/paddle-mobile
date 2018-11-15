@@ -480,6 +480,8 @@ public class NetParameterLoaderBundle: NetParameterData {
         if let fd = fd {
             close(fd)
         }
+        pointer.deinitialize()
+        pointer.deallocate(capacity: fileSize)
     }
 }
 
