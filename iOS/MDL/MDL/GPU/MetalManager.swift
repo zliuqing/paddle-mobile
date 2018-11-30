@@ -64,7 +64,7 @@ final class MetalManager {
 #if STATIC_LIBRARY
         //TODO Change to your bundle path!!!
         libBundle = Bundle.main
-        if let mdlBundlePath = libBundle.path(forResource: "YourBundle.bundle/MDL", ofType: "bundle"), let mdlBundle = Bundle(path: mdlBundlePath) {
+        if let mdlBundlePath = libBundle.path(forResource: "MISImageSearchBundle.bundle/MDL", ofType: "bundle"), let mdlBundle = Bundle(path: mdlBundlePath) {
             libBundle = mdlBundle
 
         } else {
